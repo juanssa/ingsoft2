@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/vendor/fontawesome/css/all.css">
     <link rel="stylesheet" href="estilos.css">
     <!-- <link rel="stylesheet" href="estilos_empleados.css"> -->
-      
+
       <?php  require_once('php/iniciar_sesion.php');?>
   </head>
 
@@ -21,13 +21,8 @@
 
       $position=$_SESSION['SESSION_USUARIO'];
       $nss=$_SESSION['SESSION_ID'];
-<<<<<<< HEAD
-      if($position='admin') {
-?>
-=======
       if($position=='ADMIN') {
-?> 
->>>>>>> 584c2fd206630890382750a00f71396e8c0f7513
+?>
       </div>
     </header>
 
@@ -99,7 +94,7 @@
                       echo '<option value="'.$valores[categoria].'">'.$valores[categoria].'</option>';
                     }
                   ?>
-             	
+
             </select>
             </div>
             <button type="submit" class="btn submit-button float-right" name="guardar" value="guardar">Guardar</button>
