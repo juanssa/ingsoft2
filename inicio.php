@@ -38,11 +38,11 @@
 
     <div class="container my-5">
       <nav class="nav nav-pills flex-column flex-sm-row">
-        <a class="flex-md-fill text-sm-center nav-link col-md-4 nav-act" href="#"><i class="fab fa-pagelines icono"></i></a> </li>
+        <a class="flex-md-fill text-sm-center nav-link col-md-4 nav-act" href="graficas.php"><i class="fab fa-pagelines icono">Graficas</i></a> </li>
         <a class="flex-md-fill text-sm-center nav-link col-md-4 nav-act" href="tipo_inversion.php">Tipo de inversiones <i class="fas fa-columns"></i></a> </li>
         <a class="flex-md-fill text-sm-center nav-link col-md-4 nav-act" href="clientes.php">Clientes <i class="fas fa-users"></i></a></li>
         <a class="flex-md-fill text-sm-center nav-link col-md-4 nav-act" href="inversion.php">Inversión <i class="fas fa-coins"></i></a> </li>
-        <a class="flex-md-fill text-sm-center nav-link col-md-4 nav-act" href="menupagointereses.php">Pago de intereses <i class="fas fa-money-bill"></i></a> </li>
+        <a class="flex-md-fill text-sm-center nav-link col-md-4 nav-act" href="lista_pago_interes.php">Pago de intereses <i class="fas fa-money-bill"></i></a> </li>
         <a class="flex-md-fill text-sm-center nav-link col-md-4 nav-act" href="menuempleados.php">Empleados <i class="far fa-address-card"></i></a> </li>
       </ul>
     </div>

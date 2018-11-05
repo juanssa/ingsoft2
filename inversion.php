@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/vendor/fontawesome/css/all.css">
     <link rel="stylesheet" href="estilos.css">
     <!-- <link rel="stylesheet" href="estilos_empleados.css"> -->
+      
       <?php  require_once('php/iniciar_sesion.php');?>
   </head>
 
@@ -20,8 +21,13 @@
 
       $position=$_SESSION['SESSION_USUARIO'];
       $nss=$_SESSION['SESSION_ID'];
+<<<<<<< HEAD
       if($position='admin') {
 ?>
+=======
+      if($position=='ADMIN') {
+?> 
+>>>>>>> 584c2fd206630890382750a00f71396e8c0f7513
       </div>
     </header>
 
@@ -56,8 +62,16 @@
         <form class="col-sm-12 col-md-6 offset-md-3 p-4 " action="php/agregar_inversion.php" method="POST" class="col-sm-12 col-md-6 offset-md-3 p-4">
           <h2 class="tname">Datos de las Inversiones</h2>
             <div class="form-group">
-              <label for="rfcCliente">RFC de Cliente</label>
-              <input type="text" class="form-control" id="rfcCliente" name="rfcCliente" placeholder="RFC" required>
+              <label for="rfcCliente">RFC de Cliente</label><br>
+              <!-- <input type="text" class="form-control" id="rfcCliente" name="rfcCliente" placeholder="RFC" required> -->
+              <select class="form-control input-group mb-3" name="RFC">
+                   <?php
+                      $query = $conexion -> query("SELECT * FROM clientes");
+                      while ($valores = mysqli_fetch_array($query)) {
+                      echo '<option value="'.$valores[RFC].'">'.$valores[RFC].'</option>';
+                    }
+                  ?>
+              </select>
             </div>
             <div class="form-group">
               <label for="fecha">Fecha</label>
@@ -79,11 +93,13 @@
              <div class="form-group">
               <label for="categoria">categoria</label>
               <select class="form-control" name="categoria">
-                <option value="Oro">Oro</option>
-                <option value="Plata">Plata</option>
-                <option value="Cobre">Cobre</option>
-                <option value="Cetes">Cetes</option>
-                <option value="Escrituras">Escrituras</option>
+                <?php
+                      $query = $conexion -> query("SELECT * FROM tipo_inversion");
+                      while ($valores = mysqli_fetch_array($query)) {
+                      echo '<option value="'.$valores[categoria].'">'.$valores[categoria].'</option>';
+                    }
+                  ?>
+             	
             </select>
             </div>
             <button type="submit" class="btn submit-button float-right" name="guardar" value="guardar">Guardar</button>

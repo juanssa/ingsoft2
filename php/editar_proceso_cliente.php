@@ -13,7 +13,7 @@ $telefono = $_POST['telefono'];
 
 $consulta="UPDATE clientes SET rfc='$rfc', nombre='$nombre', direccion='$direccion', telefono='$telefono' WHERE rfc='$id'";
 if (mysqli_query($conexion, $consulta)) {
-      header("Location: ../lista_cliente.html");
+      header("Location: ../lista_cliente.php");
 } else {
       echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
 }

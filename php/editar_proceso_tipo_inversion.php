@@ -13,7 +13,7 @@ $tasa_pago = $_POST['tasa_pago'];
 
 $consulta="UPDATE tipo_inversion SET id_tipo_inv='$ID', categoria='$categoria', porcentaje='$porcentaje', tasa_pago='$tasa_pago' WHERE id_tipo_inv='$id'";
 if (mysqli_query($conexion, $consulta)) {
-      header("Location: ../lista_tipo_inversion.html");
+      header("Location: ../lista_tipo_inversion.php");
 } else {
       echo "Error: " . $consulta . "<br>" . mysqli_error($conexion);
 }

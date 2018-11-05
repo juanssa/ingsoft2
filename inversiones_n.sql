@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-10-2018 a las 22:20:27
+-- Tiempo de generación: 29-10-2018 a las 12:12:30
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -88,14 +88,86 @@ CREATE TABLE IF NOT EXISTS `inversion` (
   KEY `nss_empleado` (`nss_empleado`),
   KEY `RFC_cliente` (`RFC_cliente`),
   KEY `categoria` (`categoria`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
 -- Volcado de datos para la tabla `inversion`
 --
 
 INSERT INTO `inversion` (`id_inversion`, `fecha_reg`, `dias`, `importe`, `nss_empleado`, `RFC_cliente`, `categoria`) VALUES
-(1, '2018-09-13', 40, '3000', '04079147460', 'SOGJ910530493', 'METALES');
+(13, '2018-10-24', 12, '20000', '09092765454', 'SOGVC93071790', 'Oro'),
+(24, '2018-10-24', 12, '499484', '09092765454', 'SOGJ910530493', 'Oro');
+
+--
+-- Disparadores `inversion`
+--
+DROP TRIGGER IF EXISTS `PAGO_INTERES_AI`;
+DELIMITER //
+CREATE TRIGGER `PAGO_INTERES_AI` AFTER INSERT ON `inversion`
+ FOR EACH ROW BEGIN
+DECLARE vIdPagoint int;
+DECLARE vNSS char(11);
+DECLARE vRfc char(11);
+DECLARE vCategoria varchar(50);
+DECLARE importe double;
+
+
+
+SELECT id_inversion INTO vIdPagoint from inversion ;
+SELECT nss_empleado INTO vNSS from inversion ; 
+SELECT RFC_cliente INTO vRfc from inversion ;
+SELECT categoria INTO vCategoria from inversion ;
+
+SELECT (i.importe * ti.porcentaje)/100 as importe INTO importe
+from inversion i
+join tipo_inversion ti
+on i.categoria = ti.categoria
+join pago_interes pi
+where i.id_inversion = i.id_inversion;
+
+INSERT INTO PAGO_INTERES(
+id_pago_interes,
+fecha_pago,
+importe, 
+rfc_cliente,
+nss_empleado,
+categoria)
+VALUES
+(
+vIdPagoint, 
+SYSDATE(),
+importe,
+vRfc,
+vNSS,
+vCategoria);
+
+END
+//
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pago_interes`
+--
+
+CREATE TABLE IF NOT EXISTS `pago_interes` (
+  `id_pago_interes` int(20) unsigned NOT NULL,
+  `fecha_pago` date NOT NULL,
+  `importe` double NOT NULL,
+  `rfc_cliente` char(13) NOT NULL,
+  `nss_empleado` char(13) NOT NULL,
+  `categoria` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_pago_interes`),
+  UNIQUE KEY `id_pago_interes` (`id_pago_interes`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `pago_interes`
+--
+
+INSERT INTO `pago_interes` (`id_pago_interes`, `fecha_pago`, `importe`, `rfc_cliente`, `nss_empleado`, `categoria`) VALUES
+(13, '2018-10-23', 2000.78, 'valentina', 'juan', '234');
 
 -- --------------------------------------------------------
 
@@ -116,8 +188,11 @@ CREATE TABLE IF NOT EXISTS `tipo_inversion` (
 --
 
 INSERT INTO `tipo_inversion` (`id_tipo_inv`, `categoria`, `porcentaje`, `tasa_pago`) VALUES
-(3, 'cobre', 8, 5),
-(1, 'METALES', 8, 12);
+(3, 'BMV', 6, 5),
+(5, 'BONO M10', 7, 9),
+(4, 'CETES', 16, 6),
+(1, 'ORO', 43, 12),
+(2, 'PLATA', 3, 9);
 
 --
 -- Restricciones para tablas volcadas

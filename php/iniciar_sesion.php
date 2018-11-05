@@ -70,9 +70,9 @@ if($resultado){
 		$_SESSION['SESSION_ID'] = $member['nss'];
      	$_SESSION['SESSION_USUARIO'] = $member['puesto'];
 
-     	session_write_close();
-    
-    header("Location: ../ejecutivo.php");
+     	session_write_close();    
+    	header("Location: ../ejecutivo.php");
+    	
     exit();
 }else {
     echo "Error en la autenticacion... intente de nuevo <br><a href='../index.php'> regresar</a>";
