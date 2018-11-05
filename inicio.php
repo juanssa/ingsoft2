@@ -35,7 +35,7 @@
 
     <div class="container my-5">
       <nav class="nav nav-pills flex-column flex-sm-row">
-        <a class="flex-md-fill text-sm-center nav-link col-md-4 nav-act" href="#"><i class="fab fa-pagelines icono"></i></a> </li>
+        <a class="flex-md-fill text-sm-center nav-link col-md-4 nav-act" href="graficas.php"><i class="fab fa-pagelines icono">Graficas</i></a> </li>
         <a class="flex-md-fill text-sm-center nav-link col-md-4 nav-act" href="tipo_inversion.php">Tipo de inversiones <i class="fas fa-columns"></i></a> </li>
         <a class="flex-md-fill text-sm-center nav-link col-md-4 nav-act" href="clientes.php">Clientes <i class="fas fa-users"></i></a></li>
         <a class="flex-md-fill text-sm-center nav-link col-md-4 nav-act" href="inversion.php">Inversión <i class="fas fa-coins"></i></a> </li>
